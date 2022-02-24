@@ -42,8 +42,18 @@ void addNode (struct nodes *root, int newData) {
     printf("\n%d", current->data);
     current->next = newNode;
     //return newNode; // Return is likely unnecessary - need to add loop to sift through links and add that way
-};
+}
 
+void printLinks(struct nodes *rootLink)
+{
+    struct nodes *current = rootLink;
+    while (current->next) {
+        printf("\ndata: %d", current->data);
+        current = current->next;
+    }
+    printf("\ndata: %d", current->data);
+    printf("\nend");
+}
 
 int main() {
     struct nodes *root;
@@ -60,8 +70,10 @@ int main() {
     //test new node creation
     addNode(root, 1);
     addNode(root, 2);
+    printLinks(root);
 
     root = replaceHead(root, 4);
+    printLinks(root);
 
 //    printf("\n%d %d %p", root->next->data, root->next->data, &root->next);
 //    printf("\n%p", root->next);
