@@ -10,14 +10,23 @@ struct nodes {
     struct nodes *next;
 };
 
-struct nodes * addNode (int newData, int newKey) {
+void addNode (struct nodes *root, int newData, int newKey) {
     //create new node
     struct nodes *newNode;
     newNode = (struct nodes*) malloc(sizeof(struct nodes));
     newNode->data = newData;
     newNode->key = newKey;
     newNode->next = NULL;
-    return newNode; // Return is likely unnecessary - need to add loop to sift through links and add that way
+    printf("\nTest");
+    // add new node to linked list
+    struct nodes *current = root;
+    while (current->next) {
+        printf("\n%d", current->data);
+        current = current->next;
+    }
+    printf("\n%d", current->data);
+    current->next = newNode;
+    //return newNode; // Return is likely unnecessary - need to add loop to sift through links and add that way
 };
 
 
@@ -31,11 +40,12 @@ int main() {
     printf("%d %d %p", root->data, root->key, &root);
     printf("\n%p", root);
     //test new node creation
-    root->next = addNode(10, 14);
+    addNode(root, 10, 14);
+    addNode(root, 20, 14);
 
-    printf("\n%d %d %p", root->next->data, root->next->key, &root->next);
-    printf("\n%p", root->next);
-
+//    printf("\n%d %d %p", root->next->data, root->next->key, &root->next);
+//    printf("\n%p", root->next);
+    free(root->next->next);
     free(root->next);
     free(root);
     return 0;
