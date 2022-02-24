@@ -4,12 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct nodes {
+struct nodes { //define struct for nodes
     int data;
     struct nodes *next;
 };
 
-struct nodes* replaceHead (struct nodes *head, int newData)
+struct nodes* replaceHead (struct nodes *head, int newData) //Add link to start of list
 {
     struct nodes *newRoot;
     newRoot = (struct nodes*) malloc(sizeof(struct nodes));
@@ -22,7 +22,8 @@ struct nodes* replaceHead (struct nodes *head, int newData)
     return newRoot; //return replace head var
 }
 
-void addNode (struct nodes *head, int newData) {
+void addNode (struct nodes *head, int newData) //Add Node to end of list
+{
     //create new node
     struct nodes *newNode;
     newNode = (struct nodes*) malloc(sizeof(struct nodes));
@@ -43,7 +44,7 @@ void addNode (struct nodes *head, int newData) {
     current->next = newNode;
 }
 
-void printLinks(struct nodes *head)
+void printLinks(struct nodes *head) //Print all items of list
 {
     struct nodes *current = head;
     while (current->next) {
@@ -54,7 +55,7 @@ void printLinks(struct nodes *head)
     printf("\nend");
 }
 
-void clearList(struct nodes *link) //
+void clearList(struct nodes *link) //Clear list, free memory
 {
     struct nodes *current = link;
     struct nodes *prev;
@@ -68,6 +69,10 @@ void clearList(struct nodes *link) //
     printf("\ncleared");
 }
 
+void findLink(struct nodes *head, int data)
+{
+
+}
 int main() {
     //Create head of list
     struct nodes *head;
@@ -79,8 +84,6 @@ int main() {
     head->next = NULL;
     head->data = 0;
 
-    printf("\n%d %p", head->data, &head);
-    printf("\n%p", head);
     //test new node creation
     addNode(head, 1);
     addNode(head, 2);
