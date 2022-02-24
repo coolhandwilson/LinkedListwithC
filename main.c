@@ -9,7 +9,7 @@ struct nodes {
     struct nodes *next;
 };
 
-struct nodes* replaceHead (struct nodes *root, int newData)
+struct nodes* replaceHead (struct nodes *head, int newData)
 {
     struct nodes *newRoot;
     newRoot = (struct nodes*) malloc(sizeof(struct nodes));
@@ -18,11 +18,11 @@ struct nodes* replaceHead (struct nodes *root, int newData)
         exit(1);
     }
     newRoot->data = newData;
-    newRoot->next = root; //point to former head of linked list
-    return newRoot; //return replace root var
+    newRoot->next = head; //point to former head of linked list
+    return newRoot; //return replace head var
 }
 
-void addNode (struct nodes *root, int newData) {
+void addNode (struct nodes *head, int newData) {
     //create new node
     struct nodes *newNode;
     newNode = (struct nodes*) malloc(sizeof(struct nodes));
@@ -34,19 +34,18 @@ void addNode (struct nodes *root, int newData) {
     newNode->next = NULL;
     printf("\nTest");
     // add new node to linked list
-    struct nodes *current = root;
+    struct nodes *current = head;
     while (current->next) {
         printf("\n%d", current->data);
         current = current->next;
     }
     printf("\n%d", current->data);
     current->next = newNode;
-    //return newNode; // Return is likely unnecessary - need to add loop to sift through links and add that way
 }
 
-void printLinks(struct nodes *rootLink)
+void printLinks(struct nodes *head)
 {
-    struct nodes *current = rootLink;
+    struct nodes *current = head;
     while (current->next) {
         printf("\ndata: %d", current->data);
         current = current->next;
@@ -70,33 +69,26 @@ void clearList(struct nodes *link) //
 }
 
 int main() {
-    struct nodes *root;
-    root = (struct nodes *) malloc(sizeof(struct nodes));
-    if (root == NULL) {
+    //Create head of list
+    struct nodes *head;
+    head = (struct nodes *) malloc(sizeof(struct nodes));
+    if (head == NULL) {
         printf("\nMemory Allocation Error.");
         exit(1);
     }
-    root->next = NULL;
-    root->data = 0;
+    head->next = NULL;
+    head->data = 0;
 
-    printf("\n%d %p", root->data, &root);
-    printf("\n%p", root);
+    printf("\n%d %p", head->data, &head);
+    printf("\n%p", head);
     //test new node creation
-    addNode(root, 1);
-    addNode(root, 2);
-    printLinks(root);
+    addNode(head, 1);
+    addNode(head, 2);
+    printLinks(head);
 
-    root = replaceHead(root, 4);
-    printLinks(root);
-    clearList(root);
+    head = replaceHead(head, 4);
+    printLinks(head);
+    clearList(head);
 
-
-
-//    printf("\n%d %d %p", root->next->data, root->next->data, &root->next);
-//    printf("\n%p", root->next);
-//    free(root->next->next->next);
-//    free(root->next->next);
-//    free(root->next);
-//    free(root);
     return 0;
 }
