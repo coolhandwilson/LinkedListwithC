@@ -80,7 +80,7 @@ int findLink(struct nodes *head, int data)
         ++location;
         current = current->next;
     }
-    return location;
+    return -1;
 }
 int main() {
     //Create head of list
@@ -100,6 +100,11 @@ int main() {
 
     head = replaceHead(head, 4);
     printLinks(head);
+    int search1, search2;
+    search1 = findLink(head, 4);
+    printf("\nThe node is in position %d\n", search1);
+    search2 = findLink(head, 100);
+    printf("This should output negative 1 because the data doesn't exist: %d\n", search2);
     clearList(head);
 
     return 0;
