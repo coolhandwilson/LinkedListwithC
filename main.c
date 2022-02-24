@@ -65,6 +65,8 @@ void clearList(struct nodes *link) //
         free(prev);
         printf("\ncleared");
     }
+    free(current);
+    printf("\ncleared");
 }
 
 int main() {
@@ -86,15 +88,15 @@ int main() {
 
     root = replaceHead(root, 4);
     printLinks(root);
-    clearList(root)
+    clearList(root);
 
 
 
 //    printf("\n%d %d %p", root->next->data, root->next->data, &root->next);
 //    printf("\n%p", root->next);
-    free(root->next->next->next);
-    free(root->next->next);
-    free(root->next);
-    free(root);
+//    free(root->next->next->next);
+//    free(root->next->next);
+//    free(root->next);
+//    free(root);
     return 0;
 }
