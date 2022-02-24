@@ -5,13 +5,16 @@
 #include <stdlib.h>
 
 struct nodes {
-    int data;
     int key;
     struct nodes *next;
 };
 
+struct nodes* replaceHead (struct nodes *root)
+{
 
-void addNode (struct nodes *root, int newData, int newKey) {
+}
+
+void addNode (struct nodes *root, int newKey) {
     //create new node
     struct nodes *newNode;
     newNode = (struct nodes*) malloc(sizeof(struct nodes));
@@ -19,17 +22,16 @@ void addNode (struct nodes *root, int newData, int newKey) {
         printf("\nMemory Allocation Error.");
         exit(1);
     }
-    newNode->data = newData;
     newNode->key = newKey;
     newNode->next = NULL;
     printf("\nTest");
     // add new node to linked list
     struct nodes *current = root;
     while (current->next) {
-        printf("\n%d", current->data);
+        printf("\n%d", current->key);
         current = current->next;
     }
-    printf("\n%d", current->data);
+    printf("\n%d", current->key);
     current->next = newNode;
     //return newNode; // Return is likely unnecessary - need to add loop to sift through links and add that way
 };
@@ -43,14 +45,13 @@ int main() {
         exit(1);
     }
     root->next = NULL;
-    root->data = 13;
-    root->key = 131;
+    root->key = 0;
 
-    printf("%d %d %p", root->data, root->key, &root);
+    printf("\n%d %p", root->key, &root);
     printf("\n%p", root);
     //test new node creation
-    addNode(root, 10, 14);
-    addNode(root, 20, 14);
+    addNode(root, 1);
+    addNode(root, 2);
 
 //    printf("\n%d %d %p", root->next->data, root->next->key, &root->next);
 //    printf("\n%p", root->next);
