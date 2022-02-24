@@ -55,6 +55,18 @@ void printLinks(struct nodes *rootLink)
     printf("\nend");
 }
 
+void clearList(struct nodes *link) //
+{
+    struct nodes *current = link;
+    struct nodes *prev;
+    while (current->next) {
+        prev = current;
+        current = current->next;
+        free(prev);
+        printf("\ncleared");
+    }
+}
+
 int main() {
     struct nodes *root;
     root = (struct nodes *) malloc(sizeof(struct nodes));
@@ -74,6 +86,9 @@ int main() {
 
     root = replaceHead(root, 4);
     printLinks(root);
+    clearList(root)
+
+
 
 //    printf("\n%d %d %p", root->next->data, root->next->data, &root->next);
 //    printf("\n%p", root->next);
