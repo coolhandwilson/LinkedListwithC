@@ -69,9 +69,18 @@ void clearList(struct nodes *link) //Clear list, free memory
     printf("\ncleared");
 }
 
-void findLink(struct nodes *head, int data)
+int findLink(struct nodes *head, int data)
 {
-
+    struct nodes *current = head;
+    int location = 0;
+    while (current) {
+        if (current->data == data) {
+            return location;
+        }
+        ++location;
+        current = current->next;
+    }
+    return location;
 }
 int main() {
     //Create head of list
