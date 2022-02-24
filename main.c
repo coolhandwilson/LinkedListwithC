@@ -5,16 +5,24 @@
 #include <stdlib.h>
 
 struct nodes {
-    int key;
+    int data;
     struct nodes *next;
 };
 
-struct nodes* replaceHead (struct nodes *root)
+struct nodes* replaceHead (struct nodes *root, int newData)
 {
-
+    struct nodes *newRoot;
+    newRoot = (struct nodes*) malloc(sizeof(struct nodes));
+    if (newRoot == NULL) {
+        printf("\nMemory Allocation Error.");
+        exit(1);
+    }
+    newRoot->data = newData;
+    newRoot->next = root; //point to former head of linked list
+    return newRoot; //return replace root var
 }
 
-void addNode (struct nodes *root, int newKey) {
+void addNode (struct nodes *root, int newData) {
     //create new node
     struct nodes *newNode;
     newNode = (struct nodes*) malloc(sizeof(struct nodes));
@@ -22,16 +30,16 @@ void addNode (struct nodes *root, int newKey) {
         printf("\nMemory Allocation Error.");
         exit(1);
     }
-    newNode->key = newKey;
+    newNode->data = newData;
     newNode->next = NULL;
     printf("\nTest");
     // add new node to linked list
     struct nodes *current = root;
     while (current->next) {
-        printf("\n%d", current->key);
+        printf("\n%d", current->data);
         current = current->next;
     }
-    printf("\n%d", current->key);
+    printf("\n%d", current->data);
     current->next = newNode;
     //return newNode; // Return is likely unnecessary - need to add loop to sift through links and add that way
 };
@@ -45,16 +53,19 @@ int main() {
         exit(1);
     }
     root->next = NULL;
-    root->key = 0;
+    root->data = 0;
 
-    printf("\n%d %p", root->key, &root);
+    printf("\n%d %p", root->data, &root);
     printf("\n%p", root);
     //test new node creation
     addNode(root, 1);
     addNode(root, 2);
 
-//    printf("\n%d %d %p", root->next->data, root->next->key, &root->next);
+    root = replaceHead(root, 4);
+
+//    printf("\n%d %d %p", root->next->data, root->next->data, &root->next);
 //    printf("\n%p", root->next);
+    free(root->next->next->next);
     free(root->next->next);
     free(root->next);
     free(root);
