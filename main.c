@@ -10,10 +10,15 @@ struct nodes {
     struct nodes *next;
 };
 
+
 void addNode (struct nodes *root, int newData, int newKey) {
     //create new node
     struct nodes *newNode;
     newNode = (struct nodes*) malloc(sizeof(struct nodes));
+    if (newNode == NULL) {
+        printf("\nMemory Allocation Error.");
+        exit(1);
+    }
     newNode->data = newData;
     newNode->key = newKey;
     newNode->next = NULL;
@@ -33,6 +38,10 @@ void addNode (struct nodes *root, int newData, int newKey) {
 int main() {
     struct nodes *root;
     root = (struct nodes *) malloc(sizeof(struct nodes));
+    if (root == NULL) {
+        printf("\nMemory Allocation Error.");
+        exit(1);
+    }
     root->next = NULL;
     root->data = 13;
     root->key = 131;
