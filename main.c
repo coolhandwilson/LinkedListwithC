@@ -87,10 +87,10 @@ void deleteLink(struct nodes *head, int data) //Deletes the first node found wit
 {
     int index = -1;
     int counter = 0;
-    struct nodes *prev, *current;
+    struct nodes *prev, *current, *temp;
     current = head;
 
-    while (current->next && index == -1) {
+    while (current && index == -1) {
         if (current->data == data) {
             index = counter;
         }
@@ -99,6 +99,25 @@ void deleteLink(struct nodes *head, int data) //Deletes the first node found wit
         current = current->next;
     }
 
+    if (index == -1) { //target data not found in linked list
+        printf("\nNode not found.");
+        return;
+    }
+
+    if (prev == NULL) { //prev is null if target data is in head node
+        printf("\nRemove, replace head of list");
+        temp = head;
+        head = head->next;
+        free(temp);
+    } else if (current->next) { //if target data is in middle of list
+        printf("\nRemoved node from middle section");
+        prev->next = current->next;
+        free(current);
+    } else if (current->next == NULL) { // if target is tail of list
+        printf("\nRemoved tail from list");
+        prev->next = NULL;
+        free(current);
+    }
 }
 
 int main() {
