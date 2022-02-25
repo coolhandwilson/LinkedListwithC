@@ -82,6 +82,25 @@ int findLink(struct nodes *head, int data)
     }
     return -1;
 }
+
+void deleteLink(struct nodes *head, int data) //Deletes the first node found with the target data, if any
+{
+    int index = -1;
+    int counter = 0;
+    struct nodes *prev, *current;
+    current = head;
+
+    while (current->next && index == -1) {
+        if (current->data == data) {
+            index = counter;
+        }
+        ++counter;
+        prev = current;
+        current = current->next;
+    }
+
+}
+
 int main() {
     //Create head of list
     struct nodes *head;
