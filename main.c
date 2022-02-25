@@ -91,12 +91,15 @@ void deleteLink(struct nodes *head, int data) //Deletes the first node found wit
     current = head;
 
     while (current && index == -1) {
+        printf("\n%d", current->data);
+        printf("\n%p", current->next);
         if (current->data == data) {
             index = counter;
+        } else {
+            ++counter;
+            prev = current;
+            current = current->next;
         }
-        ++counter;
-        prev = current;
-        current = current->next;
     }
 
     if (index == -1) { //target data not found in linked list
@@ -134,15 +137,21 @@ int main() {
     //test new node creation
     addNode(head, 1);
     addNode(head, 2);
+    addNode(head, 3);
     printLinks(head);
 
-    head = replaceHead(head, 4);
+    //head = replaceHead(head, 4);
     printLinks(head);
     int search1, search2;
     search1 = findLink(head, 4);
     printf("\nThe node is in position %d\n", search1);
     search2 = findLink(head, 100);
     printf("This should output negative 1 because the data doesn't exist: %d\n", search2);
+
+    printLinks(head); //begin test of remove function
+    deleteLink(head, 2); //middle list
+    printLinks(head);
+
     clearList(head);
 
     return 0;
