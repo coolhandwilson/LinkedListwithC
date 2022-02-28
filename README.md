@@ -1,4 +1,4 @@
-# LinkedListwithC
+# Linked List with C
 A simple Linked List made with C.
 
 This program provides a template for a simple
