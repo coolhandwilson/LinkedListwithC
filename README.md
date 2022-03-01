@@ -10,3 +10,6 @@ The current functionality includes:
 * Replacing the Head node of the list
 * Removing a node from the list
 * Deleting a list
+
+# Author
+Wilson Scott
